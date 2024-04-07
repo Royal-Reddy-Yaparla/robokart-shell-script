@@ -25,6 +25,16 @@ else
     echo -e "$G you are root user$N"
 fi
 
+# setup mongodb repo file
 cp mongo.repo /etc/yum.repos.d/
 VALIDATE $? "mongo repo file create process"
 
+# check mongodb already installed
+mongod -version
+if [ $? -ne 0 ]
+then 
+    dnf install mongodb-org -y
+    VALIDATE $? "mongodb Installed "
+else
+    echo -e "$Y mongodb already installed : SKIPPED$N"
+fi
