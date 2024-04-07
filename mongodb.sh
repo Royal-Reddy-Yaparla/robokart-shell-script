@@ -45,3 +45,14 @@ else
     echo -e "$Y mongodb already installed : SKIPPED$N"
 fi
 
+systemctl enable mongod
+VALIDATE $? "enable mongod process"
+
+systemctl start mongod
+VALIDATE $? "start mongod process"
+
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+VALIDATE $? "provide access to remote servers for mongodb"
+
+systemctl restart mongod
+VALIDATE $? "restart mongod process"
