@@ -35,7 +35,7 @@ yum list installed nodejs
 if [ $? -eq 0 ]
 then 
     echo -e "nodejs already installed so $Y SKIPPED $N"
-    exit 1
+    # exit 1
 fi
 
 # install nodejs
