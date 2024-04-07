@@ -71,7 +71,7 @@ cd /app
 npm install
 VALIDATE $? "Install dependencies"
 
-cp catalogue.service /etc/systemd/system/
+cp /home/centos/project-shell/catalogue.service /etc/systemd/system/
 VALIDATE $? "copy catelogue server to systemd file"
 
 systemctl daemon-reload
