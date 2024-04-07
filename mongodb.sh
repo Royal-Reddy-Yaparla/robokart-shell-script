@@ -8,7 +8,7 @@ Y="\e[33m"
 N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
-LOG_FILE="/tmp/$0-$TIMESTAMP"
+LOG_FILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "scripted excuted $TIMESTAMP" &>> $LOG_FILE
 
