@@ -33,7 +33,7 @@ cp mongo.repo /etc/yum.repos.d/
 VALIDATE $? "mongo repo file create process"
 
 # check mongodb already installed if not installed install otherwise skip
-mongod -version
+mongod -version &>> $LOG_FILE
 
 if [ $? -ne 0 ]
 then 
