@@ -63,5 +63,32 @@ cd /app
 # unzip code file
 unzip -o /tmp/catalogue.zip
 
+# change directory app
+cd /app
 
+# Install all dependencies
+install npm
+VALIDATE $? "Install dependencies"
 
+cp catalogue.service /etc/systemd/system/catalogue.service
+VALIDATE $? "copy catelogue server to systemd file"
+
+systemctl daemon-reload
+VALIDATE $? "daemon-reload process"
+
+systemctl enable catalogue
+VALIDATE $? "enable catalogue process"
+
+systemctl start catalogue
+VALIDATE $? "start catalogue process"
+
+cp /home/centos/project-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "copy mongorepo process"
+
+# Install mongodb client
+dnf install mongodb-org-shell -y
+VALIDATE $? "mongodb clinet install"
+
+# load scema 
+mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js
+VALIDATE $? "mongodb schema loaded"
