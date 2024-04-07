@@ -10,6 +10,8 @@ N="\e[0m"
 TIMESTAMP=$(date +%F-%H-%M-%s)
 LOG_FILE="/tmp/$0-$TIMESTAMP"
 
+echo "scripted excuted $TIMESTAMP" &>> $LOG_FILE
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -42,3 +44,4 @@ then
 else
     echo -e "$Y mongodb already installed : SKIPPED$N"
 fi
+
