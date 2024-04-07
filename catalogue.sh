@@ -9,15 +9,15 @@ N="\e[0m"
 VALIDATE(){
     if [ $1 -ne 0 ]
     then 
-        echo "$2 .. $R FAILED $N"
+        echo -e "$2 .. $R FAILED $N"
     else
-        echo "$2 .. $G SUCCESS $N"
+        echo -e "$2 .. $G SUCCESS $N"
     fi
 }
 
 if [ $ID -ne 0 ]
 then 
-    echo "$R ERROR:: provide root access to the script$N"
+    echo -e "$R ERROR:: provide root access to the script$N"
     exit 1 
 fi
 
@@ -33,7 +33,7 @@ VALIDATE $? "enable nodejs 1.18 versioprocess"
 yum list installed nodejs
 if [ $? -eq 0 ]
 then 
-    echo "nodejs already installed so $Y SKIPPED $N"
+    echo -e "nodejs already installed so $Y SKIPPED $N"
     exit 1
 fi
 
