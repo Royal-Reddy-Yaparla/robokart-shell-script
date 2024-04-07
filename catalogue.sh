@@ -67,7 +67,7 @@ unzip -o /tmp/catalogue.zip
 cd /app
 
 # Install all dependencies
-install npm
+npm install
 VALIDATE $? "Install dependencies"
 
 cp catalogue.service /etc/systemd/system/catalogue.service
