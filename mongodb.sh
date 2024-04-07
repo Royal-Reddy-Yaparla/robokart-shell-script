@@ -7,6 +7,9 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+TIMESTAMP=$(date +%F-%H-%M-%s)
+LOG_FILE="/tmp/$0-$TIMESTAMP"
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -29,11 +32,12 @@ fi
 cp mongo.repo /etc/yum.repos.d/
 VALIDATE $? "mongo repo file create process"
 
-# check mongodb already installed
+# check mongodb already installed if not installed install otherwise skip
 mongod -version
+
 if [ $? -ne 0 ]
 then 
-    dnf install mongodb-org -y
+    dnf install mongodb-org -y &>> $LOG_FILE
     VALIDATE $? "mongodb Installed "
 else
     echo -e "$Y mongodb already installed : SKIPPED$N"
