@@ -70,7 +70,7 @@ cd /app
 npm install
 VALIDATE $? "Install dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp catalogue.service /etc/systemd/system/
 VALIDATE $? "copy catelogue server to systemd file"
 
 systemctl daemon-reload
@@ -82,7 +82,7 @@ VALIDATE $? "enable catalogue process"
 systemctl start catalogue
 VALIDATE $? "start catalogue process"
 
-cp /home/centos/project-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/project-shell/mongo.repo /etc/yum.repos.d/
 VALIDATE $? "copy mongorepo process"
 
 # Install mongodb client
