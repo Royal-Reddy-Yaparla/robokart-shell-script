@@ -11,6 +11,8 @@ MONGODB_HOST="mongodb.royalreddy.co.in"
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOG_FILE="/tmp/$0-$TIMESTAMP.log"
 
+echo "scrip started at $TIMESTAMP" &>> $LOG_FILE
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then 
@@ -66,7 +68,7 @@ curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zi
 cd /app 
 
 # unzip code file
-unzip -o /tmp/catalogue.zip 
+unzip -o /tmp/catalogue.zip  &>> $LOG_FILE
 
 # change directory app
 cd /app
