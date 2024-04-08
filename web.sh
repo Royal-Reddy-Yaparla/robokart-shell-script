@@ -61,15 +61,15 @@ rm -rf /usr/share/nginx/html/*
 VALIDATE $? "Remove nginx root content"
 
 # Download frontend code
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOG_FILE
 VALIDATE $? "Download frontend code"
 
 # Extract the codefile
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>> $LOG_FILE
 VALIDATE $? "Extract the codefile"
 
 # Unzip
-unzip /tmp/web.zip
+unzip -o /tmp/web.zip &>> $LOG_FILE
 VALIDATE $? "unzip"
 
 # Copy Nginx Reverse Proxy Configuration to /etc/nginx/default.d/
@@ -78,5 +78,5 @@ VALIDATE $? "Copy Nginx Reverse Proxy Configuration"
 
 
 # Restart Nginx
-systemctl restart nginx 
+systemctl restart nginx &>> $LOG_FILE
 VALIDATE $? "Restart Nginx"
