@@ -20,6 +20,17 @@ LOG_FILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "script started at $TIMESTAMP" &>> $LOG_FILE
 
+# Validate command
+VALIDATE(){
+    if [ $1 -ne 0 ]
+    then   
+        echo -e "$2 process $R FAILED $N"
+    else
+        echo -e "$2 process $G SUCCESS $N"
+    fi
+}
+
+
 # Check root access to script
 if [ $ID -ne 0 ]
 then 
@@ -30,4 +41,6 @@ fi
 # Set up host
 sh /home/centos/project-shell/set_up_host.sh "mongodb_server" &>> $LOG_FILE
 
-cp mongo.repo /etc/yum.repos.d
+# Copy mongo.repo to /etc/yum.repos.d/
+cp mongo.repo /etc/yum.repos.d/
+VALIDATE $? "Copy mongo.repo"
