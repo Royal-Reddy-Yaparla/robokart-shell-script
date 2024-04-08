@@ -70,14 +70,14 @@ fi
 mkdir -p /app &>> $LOG_FILE
 
 # Download the application code to created app directory
-curl -L -o curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOG_FILE 
+curl -L -o/tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOG_FILE 
 VALIDATE $? "download the application code"
 
 # Change directory to app
 cd /app 
 
 # Unzip app code file
-unzip /tmp/cart.zip &>> $LOG_FILE 
+unzip -0 /tmp/cart.zip &>> $LOG_FILE 
 VALIDATE $? "unzipping"
 
 # Install package dependencies
