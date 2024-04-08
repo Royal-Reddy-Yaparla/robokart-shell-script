@@ -77,7 +77,7 @@ VALIDATE $? "download the application code"
 cd /app 
 
 # Unzip app code file
-unzip -0 /tmp/cart.zip &>> $LOG_FILE 
+unzip -o /tmp/cart.zip &>> $LOG_FILE 
 VALIDATE $? "unzipping"
 
 # Install package dependencies
