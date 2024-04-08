@@ -15,6 +15,13 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+TIMESTAMP=$(date +%F-%H-%M-%S)
+LOG_FILE="/tmp/$0-$TIMESTAMP.log"
+
+
+exec &> $LOG_FILE
+echo "script started at $TIMESTAMP"
+
 # Check root access to script
 if [ $ID -ne 0 ]
 then 
