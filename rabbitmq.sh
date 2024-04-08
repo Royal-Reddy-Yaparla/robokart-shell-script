@@ -56,7 +56,7 @@ else
 fi
 
 # Enable rabbitmq-server 
-systemctl rabbitmq-server  &>> $LOG_FILE
+systemctl enable rabbitmq-server  &>> $LOG_FILE
 VALIDATE $? "Enable rabbitmq-server "
 
 # Start rabbitmq-server 
