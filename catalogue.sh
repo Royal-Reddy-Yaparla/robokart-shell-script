@@ -78,7 +78,7 @@ npm install  &>> $LOG_FILE
 VALIDATE $? "package dependences"
 
 # Copy catalogue server file
-cp /home/centos/project-shell/catalogue.server /etc/systemd/system/  &>> $LOG_FILE
+cp /home/centos/project-shell/catalogue.service /etc/systemd/system/  &>> $LOG_FILE
 VALIDATE $? "coping catalogue service file"
 
 # Load service
