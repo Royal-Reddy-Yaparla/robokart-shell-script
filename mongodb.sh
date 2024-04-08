@@ -47,7 +47,7 @@ VALIDATE $? "Copy mongo.repo"
 
 # Install mongodb check before install 
 yum list installed mongod
-if [ $ID -ne 0 ]
+if [ $? -ne 0 ]
 then 
     dnf install mongodb-org -y  &>> $LOG_FILE
     VALIDATE $? "Install mongodb"
