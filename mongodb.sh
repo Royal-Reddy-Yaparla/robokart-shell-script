@@ -18,9 +18,7 @@ N="\e[0m"
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOG_FILE="/tmp/$0-$TIMESTAMP.log"
 
-
-exec &> $LOG_FILE
-echo "script started at $TIMESTAMP"
+echo "script started at $TIMESTAMP" &>> $LOG_FILE
 
 # Check root access to script
 if [ $ID -ne 0 ]
@@ -29,5 +27,7 @@ then
     exit 1
 fi
 
-# set up host
-sh /home/centos/project-shell/set_up_host.sh "mongodb_server"
+# Set up host
+sh /home/centos/project-shell/set_up_host.sh "mongodb_server" &>> $LOG_FILE
+
+cp mongo.repo /etc/yum.repos.d
