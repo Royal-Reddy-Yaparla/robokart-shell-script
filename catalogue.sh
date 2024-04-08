@@ -112,3 +112,4 @@ VALIDATE $? "Install mongodb client"
 
 # Load Schema
 mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js &>> $LOG_FILE
+VALIDATE $? "load shcema" 
