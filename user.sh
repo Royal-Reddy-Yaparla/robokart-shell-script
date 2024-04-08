@@ -4,7 +4,7 @@
 # Author: ROYAL REDDY
 # Date: 08-04
 # Version: V1
-# Purpose: Nodejs install and configuration for catalogue service 
+# Purpose: Nodejs install and configuration for user service
 ################################################
 
 ID=$(id -u)
@@ -30,10 +30,11 @@ VALIDATE(){
     fi
 }
 
+
 # Check root access to script
 if [ $ID -ne 0 ]
 then 
-    echo -e "$R Error:: Provide root accuss to the script $N" 
+    echo -e "$R Error:: Provide root access to the script $N" 
     exit 1
 fi
 
@@ -44,7 +45,6 @@ VALIDATE $? "Disable nodejs default version"
 # Enable nodejs 1.18 version
 dnf module enable nodejs:18 -y &>> $LOG_FILE
 VALIDATE $? "Enable nodejs 1.18 version"
-
 
 # Install nodejs check before install 
 yum list installed nodejs &>> $LOG_FILE
@@ -70,36 +70,35 @@ fi
 mkdir -p /app &>> $LOG_FILE
 
 # Download the application code to created app directory
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOG_FILE
+curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOG_FILE 
 VALIDATE $? "download the application code"
 
 # Change directory to app
 cd /app 
 
 # Unzip app code file
-unzip -o /tmp/catalogue.zip &>> $LOG_FILE 
+unzip -o /tmp/user.zip &>> $LOG_FILE 
 VALIDATE $? "unzipping"
-
 
 # Install package dependencies
 npm install  &>> $LOG_FILE
 VALIDATE $? "package dependences"
 
-# Copy catalogue server file
-cp /home/centos/project-shell/catalogue.service /etc/systemd/system/  &>> $LOG_FILE
-VALIDATE $? "coping catalogue service file"
+# Copy user server file
+cp /home/centos/project-shell/user.service /etc/systemd/system/  &>> $LOG_FILE
+VALIDATE $? "coping user service file"
 
 # Load service
 systemctl daemon-reload  &>> $LOG_FILE
-VALIDATE $? "Load catalogue service"
+VALIDATE $? "Load user service"
 
-# Enable catalogue
-systemctl enable catalogue &>> $LOG_FILE
-VALIDATE $? "Enable catalogue"
+# Enable user
+systemctl enable user &>> $LOG_FILE
+VALIDATE $? "Enable user"
 
 # Start catalogue
-systemctl start catalogue &>> $LOG_FILE
-VALIDATE $? "Start catalogue"
+systemctl start user &>> $LOG_FILE
+VALIDATE $? "Start user"
 
 # Copy mongo.repo to /etc/yum.repos.d/
 cp /home/centos/project-shell/mongo.repo /etc/yum.repos.d/ &>> $LOG_FILE
@@ -109,6 +108,7 @@ VALIDATE $? "Copy mongo.repo"
 # Install mongodb client
 dnf install mongodb-org-shell -y &>> $LOG_FILE
 VALIDATE $? "Install mongodb client" 
+
 
 # Load Schema
 mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js &>> $LOG_FILE

@@ -34,7 +34,7 @@ VALIDATE(){
 # Check root access to script
 if [ $ID -ne 0 ]
 then 
-    echo -e "$R Error:: Provide root accuess to the script $N" 
+    echo -e "$R Error:: Provide root accuss to the script $N" 
     exit 1
 fi
 
