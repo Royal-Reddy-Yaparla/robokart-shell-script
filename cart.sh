@@ -70,7 +70,7 @@ fi
 mkdir -p /app &>> $LOG_FILE
 
 # Download the application code to created app directory
-curl -L -o/tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOG_FILE 
+curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOG_FILE 
 VALIDATE $? "download the application code"
 
 # Change directory to app
