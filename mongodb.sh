@@ -39,7 +39,7 @@ then
 fi
 
 # Set up host
-sh /home/centos/project-shell/set_up_host.sh "mongodb_server" &>> $LOG_FILE
+# sh /home/centos/project-shell/set_up_host.sh "mongodb_server" &>> $LOG_FILE
 
 # Copy mongo.repo to /etc/yum.repos.d/
 cp mongo.repo /etc/yum.repos.d/
