@@ -96,7 +96,7 @@ VALIDATE $? "Load user service"
 systemctl enable user &>> $LOG_FILE
 VALIDATE $? "Enable user"
 
-# Start catalogue
+# Start user
 systemctl start user &>> $LOG_FILE
 VALIDATE $? "Start user"
 
