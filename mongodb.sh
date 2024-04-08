@@ -8,7 +8,7 @@
 ################################################
 
 # set up host
-sh /home/centos/project-shell "mongodb_server"
+sh /home/centos/project-shell/set_up_host.sh "mongodb_server"
 
 ID=$(id -u)
 
