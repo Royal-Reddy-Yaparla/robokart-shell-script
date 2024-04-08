@@ -30,11 +30,11 @@ VALIDATE(){
     fi
 }
 # Disable nodejs default version
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>> $LOG_FILE
 VALIDATE $? "Disable nodejs default version"
 
 # Enable nodejs 1.18 version
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>> $LOG_FILE
 VALIDATE $? "Enable nodejs 1.18 version"
 
 
@@ -78,7 +78,7 @@ npm install  &>> $LOG_FILE
 VALIDATE $? "package dependences"
 
 # Copy catalogue server file
-cp /home/centos/project-shell/catalogue.server /etc/systemd/system/  &>> $LOG_FILE
+cp /home/centos/project-shell/catalogue.server /etc/systemd/system/catalogue.server  &>> $LOG_FILE
 VALIDATE $? "coping catalogue service file"
 
 # Load service
