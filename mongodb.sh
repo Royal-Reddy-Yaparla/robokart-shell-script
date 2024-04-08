@@ -7,9 +7,6 @@
 # Purpose: MongoDB install and configuration
 ################################################
 
-# set up host
-sh /home/centos/project-shell/set_up_host.sh "mongodb_server"
-
 ID=$(id -u)
 
 # Colors
@@ -23,3 +20,6 @@ if [ $ID -ne 0 ]
 then 
     echo -e "$R Error:: Provide root accuess to the script $N" 
 fi
+
+# set up host
+sh /home/centos/project-shell/set_up_host.sh "mongodb_server"
