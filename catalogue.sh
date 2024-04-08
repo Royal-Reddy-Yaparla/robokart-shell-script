@@ -78,7 +78,7 @@ npm install  &>> $LOG_FILE
 VALIDATE $? "package dependences"
 
 # Copy catalogue server file
-cp /home/centos/project-shell/catalogue.server /etc/systemd/system/catalogue.server  &>> $LOG_FILE
+cp /home/centos/project-shell/catalogue.server /etc/systemd/system/  &>> $LOG_FILE
 VALIDATE $? "coping catalogue service file"
 
 # Load service
@@ -103,4 +103,4 @@ dnf install mongodb-org-shell -y &>> $LOG_FILE
 VALIDATE $? "Install mongodb client" 
 
 # Load Schema
-mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js
+mongo --host mongodb.royalreddy.co.in </app/schema/catalogue.js &>> $LOG_FILE
