@@ -19,6 +19,7 @@ N="\e[0m"
 if [ $ID -ne 0 ]
 then 
     echo -e "$R Error:: Provide root accuess to the script $N" 
+    exit 1
 fi
 
 # set up host
