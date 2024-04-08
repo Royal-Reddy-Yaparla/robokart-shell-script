@@ -76,15 +76,15 @@ unzip -o /tmp/dispatch.zip &>> $LOG_FILE
 VALIDATE $? "unzipping"
 
 # Init the dependenciess
-go mod init dispatch
+go mod init dispatch &>> $LOG_FILE 
 VALIDATE $? "Init the dependencies"
 
 # Download dependencies
-go get 
+go get &>> $LOG_FILE 
 VALIDATE $? "Download dependencies"
 
 # Build
-go build
+go build &>> $LOG_FILE 
 VALIDATE $? "Build the application"
 
 # Copy dispatch server file
@@ -99,6 +99,6 @@ VALIDATE $? "Load dispatch service"
 systemctl enable dispatch &>> $LOG_FILE
 VALIDATE $? "Enable dispatch"
 
-# Start catalogue
+# Start dispatch
 systemctl start dispatch &>> $LOG_FILE
 VALIDATE $? "Start dispatch"
