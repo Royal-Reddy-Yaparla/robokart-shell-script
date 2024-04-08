@@ -46,7 +46,7 @@ cp mongo.repo /etc/yum.repos.d/ &>> $LOG_FILE
 VALIDATE $? "Copy mongo.repo"
 
 # Install mongodb check before install 
-yum list installed mongod &>> $LOG_FILE
+yum list installed mongodb-org &>> $LOG_FILE
 if [ $? -ne 0 ]
 then 
     dnf install mongodb-org -y  &>> $LOG_FILE
